@@ -11,6 +11,8 @@ stack.pop();
 
 // 가장 위에 확인
 stack.peek();
+
+stack.contains(100); // true or false
 ```  
 
 ## Queue  
@@ -25,4 +27,5 @@ queue.poll();
 // 가장 앞에 확인
 queue.peek();
 
+queue.contians(100); // true or false
 ```  
