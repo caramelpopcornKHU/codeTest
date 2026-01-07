@@ -13,6 +13,11 @@ stack.pop();
 stack.peek();
 
 stack.contains(100); // true or false
+
+stack.isEmpty(); // 비어있냐
+
+while(!stack.isEmpty()){} // 예시
+
 ```  
 
 ## Queue  
@@ -28,4 +33,8 @@ queue.poll();
 queue.peek();
 
 queue.contians(100); // true or false
+
+queue.isEmpty(); // 비어있냐
+
+while(!queue.isEmpty()){} //예시
 ```  
