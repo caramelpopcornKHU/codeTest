@@ -5,31 +5,43 @@ import java.io.*;
 
 public class Main {
 
-	public static void main(String[] args) throws IOException {
-		Main T = new Main();
-		StringBuilder sb = new StringBuilder();
+	public int solution(String a) {
+		int answer = 0;
+		Stack<Character> stack = new Stack<Character>();
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
+		char[] c = a.toCharArray();
 
-		int n = Integer.parseInt(st.nextToken());
+		for (int i = 0; i < a.length(); i++) {
+			// '(' 이면 stack에 push
+			if (c[i] == '(')
+				stack.push(c[i]);
 
-		while (n-- > 0) {
-			st = new StringTokenizer(br.readLine());
+			// ')' 이면 stack에 pop 이후
+			if (c[i] == ')') {
+				stack.pop();
 
-			int r = Integer.parseInt(st.nextToken());
-			String s = st.nextToken();
+				// 바로 앞의 문자를 확인
+				// i-1의 outOfBound 걱정X 처음에 ')' 들어올 일 X
 
-			for (int j = 0; j < s.length(); j++) {
-				for (int k = 0; k < r; k++) {
-					sb.append(s.charAt(j));
+				if (c[i - 1] == '(') {
+					answer += stack.size(); // 레이저 쏘기니까 쇠막대기 개수 추가
+				} else if (c[i - 1] == ')') {
+					answer += 1; // 가장 상단 쇠막대기 1개 추가
 				}
 			}
-			sb.append("\n");
 
 		}
 
-		System.out.println(sb.toString());
+		return answer;
+	}
+
+	public static void main(String[] args) throws IOException {
+		Main T = new Main();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		String a = br.readLine();
+
+		System.out.println(T.solution(a));
 
 	}
 
