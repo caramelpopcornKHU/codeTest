@@ -3,7 +3,7 @@ package test06;
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class Main2 {
 
 	public void swap(int a, int b, int[] arr) {
 		int temp = arr[a];
@@ -11,29 +11,24 @@ public class Main {
 		arr[b] = temp;
 	}
 	
-	// 선택정렬
+	
+	// 버블 정렬
 	public int[] solution(int n, int[] arr) {
-
-		int idx = 0; // idx는 가장 작은 값의 인덱스를 나타냄
-
+		int a = n;
 		for (int i = 0; i < n; i++) {
-			idx = i;
-			// 가장 작은 인덱스 찾는 루프
-			for (int j = i + 1; j < n; j++) {
-				if (arr[idx] > arr[j]) {
-					idx = j;
-				}
+			for (int j = 1; j < a; j++) {
+				if(arr[j] < arr[j-1])
+					swap(j,j-1,arr);
 			}
-			swap(i, idx, arr);
+			a--;
 		}
-
+		
 		return arr;
 	}
 
 	public static void main(String[] args) throws IOException {
-		Main T = new Main();
+		Main2 T = new Main2();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
 		StringTokenizer st = new StringTokenizer(br.readLine());
 
 		int n = Integer.parseInt(st.nextToken());
