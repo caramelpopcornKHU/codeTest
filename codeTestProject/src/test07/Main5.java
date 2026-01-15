@@ -3,15 +3,15 @@ package test07;
 import java.io.*;
 import java.util.*;
 
-class Node {
-	int data;
-	Node lt, rt;
-
-	public Node(int val) {
-		data = val;
-		lt = rt = null;
-	}
-}
+//public class Node {
+//	int data;
+//	Node lt, rt;
+//
+//	public Node(int val) {
+//		data = val;
+//		lt = rt = null;
+//	}
+//}
 
 public class Main5 {
 
