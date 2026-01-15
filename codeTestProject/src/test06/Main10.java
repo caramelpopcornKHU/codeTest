@@ -4,47 +4,54 @@ import java.io.*;
 import java.util.*;
 
 public class Main10 {
-	
-	public int count(int[] arr, int dist) {
-		int cnt = 1;
-		int ep = arr[0];
 
-		for (int i = 1; i < arr.length; i++) {
-			if (arr[i] - ep >= dist) {
+	public int count(int dist, int[] arr) {
+		// 마구간 1개 스타트
+		int cnt = 1;
+
+		int lt = 0;
+
+		for (int rt = 1; rt < arr.length; rt++) {
+			if ((arr[rt] - arr[lt]) >= dist) {
+				lt = rt;
 				cnt++;
-				ep = arr[i];
 			}
 		}
-
 		return cnt;
-
 	}
 
 	public int solution(int n, int c, int[] arr) {
-		int answer = 0;
+		int answer = -1;
 
-		// 좌표 정렬
 		Arrays.sort(arr);
+
+		// 1 2 4 8 9
+
+		// 가까울수록 마구간 up
+		// 멀수록 마구간 down
 
 		int lt = 1;
 		int rt = arr[n - 1] - arr[0];
 
-		// 두마리의 말 사이 거리의 최소 경우 ~ 최대 경우 사이에 무조건 답은 있다.
-
+		// lt rt거리 사이에 최적의 마구간 개수가있어
 		while (lt <= rt) {
-			int mid = (lt + rt) / 2;
 
-			if (count(arr, mid) >= c) {
+			int mid = (lt + rt) / 2;
+			// 마구간 개수 count
+
+			// 거리가 작아서 마구간 늘어나도 ok이야
+			if (count(mid, arr) >= c) {
 				answer = mid;
 				lt = mid + 1;
-			} else {
+			}
+			// 하지만 거리가 너무 멀어서 마구간 부족하면 안되
+			else {
 				rt = mid - 1;
 			}
 
 		}
 
 		return answer;
-
 	}
 
 	public static void main(String[] args) throws IOException {
