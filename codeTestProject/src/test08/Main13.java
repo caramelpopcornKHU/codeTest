@@ -31,6 +31,65 @@ public class Main13 {
 		}
 	}
 
+	// DFS방식
+	public void solution() {
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				// 방문하지 않았던 곳과 1인 곳 방문
+				if (ch[i][j] == 0 && arr[i][j] == 1) {
+
+					DFS(i, j);
+
+					answer++;
+
+				} else {
+					continue;
+				}
+			}
+		}
+
+	}
+
+	public void BFS(int x, int y) {
+		Deque<Point> Q = new ArrayDeque<>();
+		Q.offer(new Point(x, y));
+
+		while (!Q.isEmpty()) {
+			Point tmp = Q.poll();
+			for (int i = 0; i < 8; i++) {
+				int nx = tmp.x + dx[i];
+				int ny = tmp.y + dy[i];
+
+				boolean con1 = nx > -1 && nx < n;
+				boolean con2 = ny > -1 && ny < n;
+
+				if (con1 && con2 && arr[nx][ny] == 1) {
+					arr[nx][ny] = 0;
+					Q.offer(new Point(nx,ny));
+				}
+
+			}
+		}
+
+	}
+
+	// BFS방식
+	public void solution2() {
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				// 방문하지 않았던 곳과 1인 곳 방문
+				if (arr[i][j] == 1) {
+					BFS(i, j);
+					answer++;
+
+				} else {
+					continue;
+				}
+			}
+		}
+	}
+
 	public static void main(String[] args) throws IOException {
 		Main13 T = new Main13();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -47,21 +106,8 @@ public class Main13 {
 			}
 		}
 
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				// 방문하지 않았던 곳과 1인 곳 방문
-				if (ch[i][j] == 0 && arr[i][j] == 1) {
-					System.out.println(i + " , " + j);
-					T.DFS(i, j);
-
-					answer++;
-
-				} else {
-					continue;
-				}
-			}
-		}
-
+//		T.solution();
+		T.solution2();
 		System.out.println(answer);
 
 	}
